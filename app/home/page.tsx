@@ -2,11 +2,14 @@
 import { useState, useEffect } from "react";
 import Search from "../componets/Search";
 import { useSearchParams } from 'next/navigation'
+import React from "react";
 
 
 export default function Home({clientId, secret}: {clientId:string, secret: string}) {
 
   const [token, setToken] = useState('');
+  const [reFreshToken, setRefreshToken] = useState('')
+
   const search = useSearchParams();
 
 
@@ -22,38 +25,27 @@ export default function Home({clientId, secret}: {clientId:string, secret: strin
     }
   }
 
-  useEffect(() => {
-    const getToken = async() => {
-      const code = search.get('code');
-      const state = search.get('state');
-
-      const tokenObj = {
-        code: code,
-        state: state
+  useEffect(()=> {
+    const tokenSearch =() => {
+      const foundToken = search.get('accessToken');
+      const refreshToken = search.get('refreshToken');
+      if(!foundToken || !refreshToken){
+        console.log('missing one or more tokens');
+        return
       }
-      console.log({tokenObj})
-      if(code && state){
-        const response = await fetch('/api/spotifyToken', {
-          method: "POST",
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(tokenObj)
-        })
-        if(response.ok){
-          const data = await response.json();
-          const accessToken = data.accessToken
-          const refreshToken = data.refreshToken
-          //console.log({accessToken, refreshToken});
-        }else{
-          console.log('bad req');
-        }
-      }
+      setToken(foundToken);
+      setRefreshToken(refreshToken)
     }
-    getToken();
-
+    tokenSearch();
   },[search.values])
 
+  if(!token || !reFreshToken){
+    return (
+      <div>
+        Missing credentials view
+      </div>
+    )
+  }
 
     return(
         <section>

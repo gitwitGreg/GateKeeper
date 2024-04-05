@@ -7,7 +7,7 @@ export async function GET (req: NextRequest, res: NextResponse ) {
     const client_id =  process.env.SPOTIFY_CLIENT_ID;
     const scope = 'user-read-private user-read-email user-library-read playlist-modify-public playlist-modify-private';
 
-    const redirect_uri = 'http://localhost:3000';
+    const redirect_uri = 'http://localhost:3000/api/spotifyToken';
     const state =  randomBytes(60).toString('hex').slice(0,16);
 
     const authUrl = 'https://accounts.spotify.com/authorize?'
