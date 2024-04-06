@@ -3,12 +3,15 @@ import { useState, useEffect } from "react";
 import Search from "../componets/Search";
 import { useSearchParams } from 'next/navigation'
 import React from "react";
+import Playlist from "../Playlists/page";
+import FavoriteArtists from "../FavoriteArtists/page";
 
 
-export default function Home({clientId, secret}: {clientId:string, secret: string}) {
+export default function Home() {
 
   const [token, setToken] = useState('');
   const [reFreshToken, setRefreshToken] = useState('')
+  const [user, setUser] = useState(null);
 
   const search = useSearchParams();
 
@@ -39,23 +42,61 @@ export default function Home({clientId, secret}: {clientId:string, secret: strin
     tokenSearch();
   },[search.values])
 
-  if(!token || !reFreshToken){
+  useEffect(() => {
+    const fetchUser = async() => {
+      try{
+        const response = await fetch('/api/getUser',{
+          method: 'POST',
+          body: JSON.stringify(token)
+        })
+
+        if(!response.ok){
+          console.log('error fetching user');
+          throw new Error('Error fetching user details');
+        }
+
+        const founduser = await response.json();
+
+        setUser(founduser);
+
+      }catch(error){
+        console.log(error);
+      }
+    }
+    fetchUser();
+  },[token])
+
+  if(!token || !reFreshToken || !user){
     return (
       <div>
-        Missing credentials view
+          <button onClick={handleclick} 
+          className="h-[40px] w-60 bg-red-500">
+            Give us Access
+          </button>
       </div>
     )
   }
 
     return(
-        <section>
+        <section className=" h-auto w-full gap-10 flex flex-col">
           <Search
+          token={token}
+          user={user}/>
+
+          //display thier already created playlists   
+
+          <Playlist 
+          token={token}
+          user={user}/> 
+
+          //display faviorate artists
+
+          <FavoriteArtists 
           token={token}/>
-          <button 
-          onClick={handleclick}
-          className="h-[40px] w-60 bg-red-500">
-            Give us Auth
-          </button>
+
+          //display favorite albums
+
+          //random song of the day generator
         </section>
     )
 }
