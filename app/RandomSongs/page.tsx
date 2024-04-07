@@ -1,6 +1,12 @@
 import useGetRandomSongs from "../hooks/useGetRandomSongs"
 
-export default function RandomSongs({token}: {token: string}) {
+interface TokenProp{
+    token: string
+}
+
+
+export default function RandomSongs({token}: TokenProp) {
+
     const { randomSongs } = useGetRandomSongs(token)
     return(
         <div>

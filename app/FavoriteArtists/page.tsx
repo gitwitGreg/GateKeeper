@@ -2,7 +2,11 @@ import Link from "next/link";
 import useGetFavoriteArtists from "../hooks/useGetFavoriteArtists"
 import { topTrackProp } from "../types";
 
-export default function FavoriteArtists({token}: {token: string}) {
+interface TokenProp{
+    token: string
+}
+
+export default function FavoriteArtists({token}: TokenProp) {
 
     const { topTracks }: {topTracks: topTrackProp[] | null} = useGetFavoriteArtists(token);
 
