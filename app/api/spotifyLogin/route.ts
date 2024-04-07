@@ -8,7 +8,7 @@ export async function GET (req: NextRequest, res: NextResponse ) {
 
     const scope = 'user-read-private user-read-email user-library-read playlist-modify-public playlist-modify-private user-top-read';
 
-    const redirect_uri = 'http://localhost:3000/api/spotifyToken';
+    const redirect_uri = 'https://gatekeeper-pink.vercel.app/api/spotifyToken';
     
     const state =  randomBytes(60).toString('hex').slice(0,16);
 

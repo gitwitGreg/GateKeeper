@@ -14,7 +14,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
 
     const client_id =  process.env.SPOTIFY_CLIENT_ID as string;
     const client_secret = process.env.SPOTIFY_CLIENT_SECRET as string;
-    const redirect_uri = 'http://localhost:3000/api/spotifyToken';
+    const redirect_uri = 'https://gatekeeper-pink.vercel.app/api/spotifyToken';
 
     const formData = {
         grant_type: "authorization_code",
