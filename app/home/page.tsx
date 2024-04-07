@@ -1,10 +1,9 @@
 'use client'
 import { useState, useEffect } from "react";
-import Search from "../componets/Search";
 import { useSearchParams } from 'next/navigation'
+import Search from "../componets/Search";
 import React from "react";
 import Playlist from "../componets/Playlist";
-import RandomSongs from "../RandomSongs/page";
 import FavoriteArtists  from "../componets/FavoriteArtists";
 
 export default function Home() {
