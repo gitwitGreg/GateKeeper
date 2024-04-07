@@ -1,18 +1,11 @@
 import Link from "next/link";
 import useGetFavoriteArtists from "../hooks/useGetFavoriteArtists"
 import { topTrackProp } from "../types";
+import { TokenProp } from "../types";
 
-interface TokenProp{
-    token: string
-}
-
-export default function FavoriteArtists({token}: TokenProp) {
+const FavoriteArtists = ({token}: TokenProp) => {
 
     const { topTracks }: {topTracks: topTrackProp[] | null} = useGetFavoriteArtists(token);
-
-    if(topTracks){
-        console.log(topTracks[0]);
-    }
 
     if(!topTracks){
         return(
@@ -56,3 +49,6 @@ export default function FavoriteArtists({token}: TokenProp) {
         </section>
     )
 }
+
+export default FavoriteArtists
+

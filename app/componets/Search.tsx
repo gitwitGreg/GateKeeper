@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { searchTokenProp } from "../types";
 
-
 export default function Search({token, user}: searchTokenProp) {
 
     const [artist, setArtist] = useState<string>('');

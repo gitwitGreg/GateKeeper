@@ -108,3 +108,7 @@ export interface topTrackProp{
         uri: string,
         artists: artist[]
 }
+
+export interface TokenProp{
+    token: string
+}

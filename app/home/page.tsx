@@ -3,10 +3,9 @@ import { useState, useEffect } from "react";
 import Search from "../componets/Search";
 import { useSearchParams } from 'next/navigation'
 import React from "react";
-import Playlist from "../Playlists/page";
-import FavoriteArtists from "../FavoriteArtists/page";
+import Playlist from "../componets/Playlist";
 import RandomSongs from "../RandomSongs/page";
-
+import FavoriteArtists  from "../componets/FavoriteArtists";
 
 export default function Home() {
 
