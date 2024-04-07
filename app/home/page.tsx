@@ -17,11 +17,7 @@ export default function Home() {
 
   const handleclick = async() => {
     try{
-      try {
-        window.location.href= '/api/spotifyLogin';
-      } catch (error) {
-        console.log(error);
-      }
+      window.location.href = '/api/spotifyLogin';
     }catch(error){
       console.log(error)
     }
@@ -67,7 +63,7 @@ export default function Home() {
 
   if(!token || !reFreshToken || !user){
     return (
-      <div>
+      <div className="h-screen">
           <button onClick={handleclick} 
           className="h-[40px] w-60 bg-red-500">
             Give us Access
