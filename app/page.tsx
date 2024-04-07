@@ -14,7 +14,7 @@ export default function App() {
   }
   return (
     <>
-      <main className="bg-black text-white h-screen w-full p-16">
+      <main className="bg-black text-white h-auto w-full p-16">
         <Home />
       </main>
     </>

@@ -1,9 +1,10 @@
 import { createCipheriv } from "crypto";
 import { useState, useEffect } from "react";
+import { topTrackProp } from "../types";
 
 export default function useGetFavoriteArtists(token: string) {
-    const [artists, setAtrists] = useState(null);
-    useEffect(() => {
+    const [topTracks, setTopTracks] = useState<topTrackProp[] | null> (null);
+    useEffect((): void => {
         const fetchFavoriteArtists = async() => {
             try{
                 const response = await fetch('/api/getUsersFavoriteArtits', {
@@ -15,19 +16,18 @@ export default function useGetFavoriteArtists(token: string) {
                 });
 
                 if(!response.ok){
-                    const error = await response.text();
                     console.log('error getting users favorite artists');
                     return;
                 }
-                const data = await response.json();
-                setAtrists(data);
-                
 
+                const data = await response.json();
+                setTopTracks(data);
+                return;
             }catch(error){
                 console.log(error)
             }
         }
         fetchFavoriteArtists();
     },[])
-    return{artists}
+    return{topTracks}
 }

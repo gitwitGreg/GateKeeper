@@ -75,3 +75,36 @@ export interface playlistProp {
     type: string,
     uri: string,
 }
+
+interface artist {
+    external_urls: {
+        spotify: string
+    },
+    href: string,
+    id: string,
+    name: string,
+    type: string,
+    uri: string
+}
+
+
+export interface topTrackProp{
+    album : {
+        album_name: string,
+        total_tracks: 16,
+        available_markets: string[],
+        images: image[],
+        name: string,
+    }
+    external_urls: {
+        spotify: string
+    }
+        href: string,
+        id: string,
+        name: string,
+        release_date: string,
+        release_date_precision: string,
+        type: string,
+        uri: string,
+        artists: artist[]
+}

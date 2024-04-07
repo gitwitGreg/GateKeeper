@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation'
 import React from "react";
 import Playlist from "../Playlists/page";
 import FavoriteArtists from "../FavoriteArtists/page";
+import RandomSongs from "../RandomSongs/page";
 
 
 export default function Home() {
@@ -83,20 +84,15 @@ export default function Home() {
           token={token}
           user={user}/>
 
-          //display thier already created playlists   
-
           <Playlist 
           token={token}
           user={user}/> 
 
-          //display faviorate artists
-
           <FavoriteArtists 
           token={token}/>
-
-          //display favorite albums
-
-          //random song of the day generator
+{/* 
+          <RandomSongs 
+          token={token}/> */}
         </section>
     )
 }
