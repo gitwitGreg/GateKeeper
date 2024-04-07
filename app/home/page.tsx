@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from 'next/navigation'
 import Search from "../componets/Search";
 import React from "react";
@@ -78,16 +78,18 @@ export default function Home() {
 
     return(
         <section className=" h-auto w-full gap-10 flex flex-col">
-          <Search
-          token={token}
-          user={user}/>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Search
+            token={token}
+            user={user}/>
 
-          <Playlist 
-          token={token}
-          user={user}/> 
+            <Playlist 
+            token={token}
+            user={user}/> 
 
-          <FavoriteArtists 
-          token={token}/>
+            <FavoriteArtists 
+            token={token}/>
+          </Suspense>
 {/* 
           <RandomSongs 
           token={token}/> */}

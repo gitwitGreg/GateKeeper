@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Home from "./home/page";
 
 export default function App() {
@@ -15,7 +16,7 @@ export default function App() {
   return (
     <>
       <main className="bg-black text-white h-auto w-full p-16">
-        <Home />
+          <Home />
       </main>
     </>
   );
