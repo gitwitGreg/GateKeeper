@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react"
 import { searchTokenProp } from "../types";
+import { Toaster } from "@/components/ui/toaster"
+import { useToast } from "@/components/ui/use-toast";
 
 export default function Search({token, user}: searchTokenProp) {
 
     const [artist, setArtist] = useState<string>('');
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [errorMess, setErrMess] = useState<string>('');
-    const [successMess, setSuccessMess] = useState<string>();
     const [artistId, setArtistId] = useState<string>('');
+    const { toast } = useToast()
 
     const handleSubmit = async (e: any)=> {
         if(!artist){
@@ -60,20 +62,27 @@ export default function Search({token, user}: searchTokenProp) {
                         method: 'POST',
                         body: JSON.stringify(reqObj)
                     });
+
                     if(!response.ok){
                         console.log('Error generating custom playlist');
                     }
-                    setSuccessMess('playlist was created successfully');
+
+
+                    toast({
+                        title: 'Created Playlist',
+                        description: 'playlist was created successfully'
+                    })
 
                     setArtist('');
+
                     setArtistId('');
+
                     setIsLoading(false);
 
                 }catch(error){
                     console.log(error);
                 }
             }
-            
         }
         generateNewPlaylist();
     },[artistId,user])
@@ -89,6 +98,9 @@ export default function Search({token, user}: searchTokenProp) {
 
     return(
         <div className="w-full h-auto">
+            <h1 className=" text-2xl font-bold font-serif mb-4">
+                Create Custom Playlist
+            </h1>
              <form onSubmit={handleSubmit}>
                 <input 
                 className="w-full h-16 rounded-lg text-black px-6 text-lg"
