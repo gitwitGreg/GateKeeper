@@ -55,7 +55,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
             return Response.json({error: 'missing acces or refresh token'});
         }
 
-        return NextResponse.redirect('http://localhost:3000/?accessToken=' + 
+        return NextResponse.redirect('https://gatekeeper-pink.vercel.app/?accessToken=' + 
         accessToken + '&refreshToken=' + refreshToken);
 
     }catch(error){
