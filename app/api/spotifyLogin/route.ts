@@ -4,6 +4,8 @@ import { NextResponse, NextRequest } from "next/server";
 
 export async function GET (req: NextRequest, res: NextResponse ) {
 
+    console.log('we are trying to come back after giving access');
+
     const client_id =  process.env.SPOTIFY_CLIENT_ID;
 
     const scope = 'user-read-private user-read-email user-library-read playlist-modify-public playlist-modify-private user-top-read';

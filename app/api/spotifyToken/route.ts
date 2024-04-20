@@ -2,6 +2,8 @@ import { NextResponse, NextRequest } from "next/server";
 import * as querystring from 'querystring'
 
 export async function GET(req: NextRequest, res: NextResponse) {
+
+    console.log('redirect to spotify auth sceen good');
     
     const code = req.nextUrl.searchParams.get('code');
 
