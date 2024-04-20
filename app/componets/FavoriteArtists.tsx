@@ -9,7 +9,7 @@ const FavoriteArtists = ({token}: TokenProp) => {
 
     if(!topTracks){
         return(
-            <div>
+            <div className="w- full h-full">
                 <h1>
                     Keep listening, You dont have any top tracks yet!
                 </h1>
